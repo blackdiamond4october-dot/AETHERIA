@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-script: "Great Vibes", cursive;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-zinc-900 selection:bg-zinc-900 selection:text-white overflow-x-hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(255,255,255,0.3)];
+  }
+  
+  .hologram-text {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-zinc-900 via-zinc-400 to-zinc-900 animate-pulse;
+  }
+
+  .cinematic-glow {
+    @apply absolute blur-3xl opacity-20 pointer-events-none;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(200,200,200,0) 70%);
+  }
+
+  .outline-text {
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-200 rounded-full hover:bg-zinc-300 transition-colors;
+}
+
+/* Texture overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Cfilter id='noiseFilter'%3%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3%3C/filter%3%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3%3C/svg%3");
+}
